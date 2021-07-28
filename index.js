@@ -8,7 +8,7 @@ const test = require('./test');
 
 
 app.use(express.json());
-// app.use(cors);
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(200).send('Hello World!');
@@ -31,7 +31,9 @@ app.get('/mysql10', (req, res) => {
 });
 
 app.get('/code10', (req, res) => {
-    fetchQuestions(res, 'Code');
+    fetchQuestions(res, 'Code').catch((err)=>{
+        console.log('ProgramError101: catch block initiated by fetchQuestions function.');
+    });
 });
 
 app.listen(port, () => {
